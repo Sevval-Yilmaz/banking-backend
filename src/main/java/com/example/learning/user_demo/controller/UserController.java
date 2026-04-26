@@ -1,0 +1,41 @@
+package com.example.learning.user_demo.controller;
+
+import com.example.learning.user_demo.dto.UserRequestDto;
+import com.example.learning.user_demo.dto.UserResponseDto;
+import com.example.learning.user_demo.entity.User;
+import com.example.learning.user_demo.service.UserService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/api/users") // RequestMapping?
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping
+    public List<UserResponseDto> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public UserResponseDto getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    @PostMapping
+    private UserResponseDto createUser(@RequestBody UserRequestDto userRequestDto) {
+        return userService.createUser(userRequestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        this.userService.deleteUser(id);
+    }
+}

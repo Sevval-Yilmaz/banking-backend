@@ -1,8 +1,9 @@
-package com.example.learning.user_demo;
+package com.example.learning.user_demo.controller;
 
+import com.example.learning.user_demo.service.ToDoService;
+import com.example.learning.user_demo.dto.TodoResponseDto;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,17 +21,17 @@ public class ToDoController {
     }
 
     @GetMapping
-    public List<ToDo> getTodos() {
+    public List<TodoResponseDto> getTodos() {
         return toDoService.getTodos();
     }
 
     @GetMapping("/{id}")
-    public ToDo getTodoById(@PathVariable Long id) {
+    public TodoResponseDto getTodoById(@PathVariable Long id) {
         return toDoService.getTodoById(id);
     }
 
     @PostMapping
-    public ToDo addTodo(@RequestBody ToDo todo) {
+    public TodoResponseDto addTodo(@RequestBody TodoResponseDto todo) {
         return toDoService.addTodo(todo);
     }
 
@@ -40,7 +41,7 @@ public class ToDoController {
     }
 
     @PutMapping("/{id}")
-    public ToDo updateTodo(@PathVariable Long id, @RequestBody ToDo todo ) {
+    public TodoResponseDto updateTodo(@PathVariable Long id, @RequestBody TodoResponseDto todo ) {
         return toDoService.updateTodo(id, todo);
     }
 }
