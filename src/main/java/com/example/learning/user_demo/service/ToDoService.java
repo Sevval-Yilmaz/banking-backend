@@ -1,23 +1,22 @@
-package com.example.learning.user_demo;
+package com.example.learning.user_demo.service;
 
+import com.example.learning.user_demo.dto.TodoResponseDto;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ToDoService {
-    private List<ToDo> todos = new ArrayList<>();
+    private List<TodoResponseDto> todos = new ArrayList<>();
     private Long idCounter = 0L;
 
-    public List<ToDo> getTodos() {
+    public List<TodoResponseDto> getTodos() {
         return todos;
     }
 
-    public ToDo getTodoById(Long id) {
-        for (ToDo todo : todos) {
+    public TodoResponseDto getTodoById(Long id) {
+        for (TodoResponseDto todo : todos) {
             if (todo.getId().equals(id)) {
                 return todo;
             }
@@ -25,7 +24,7 @@ public class ToDoService {
         return null;
     }
 
-    public ToDo addTodo(ToDo todo) {
+    public TodoResponseDto addTodo(TodoResponseDto todo) {
         todo.setId(idCounter);
         idCounter++;
         todos.add(todo);
@@ -37,8 +36,8 @@ public class ToDoService {
         todos.removeIf(todo -> todo.getId().equals(id));
     }
 
-    public ToDo updateTodo(Long id, ToDo todo ) {
-        for (ToDo t : todos) {
+    public TodoResponseDto updateTodo(Long id, TodoResponseDto todo ) {
+        for (TodoResponseDto t : todos) {
             if (t.getId().equals(id)) {
                 t.setTask(todo.getTask());
                 t.setDone(todo.isDone());

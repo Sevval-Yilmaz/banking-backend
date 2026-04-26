@@ -1,11 +1,11 @@
-package com.example.learning.user_demo;
+package com.example.learning.user_demo.dto;
 
-public class ToDo {
+public class TodoResponseDto {
     private Long id;
     private String task;
     private boolean done;
 
-    public ToDo(Long id, String task, boolean done) {
+    public TodoResponseDto(Long id, String task, boolean done) {
         this.id = id;
         this.task = task;
         this.done = done;
