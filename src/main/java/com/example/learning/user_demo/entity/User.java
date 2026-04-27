@@ -8,14 +8,12 @@ import java.math.BigDecimal;
 @Table(name = "app_user")
 public class User {
 
-    @Id // WAS IST DAS?
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Was ist das?
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
     private String email;
-
     private BigDecimal balance;
 
     public Long getId() {

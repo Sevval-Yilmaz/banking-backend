@@ -2,7 +2,7 @@ package com.example.learning.user_demo.dto;
 
 import java.math.BigDecimal;
 
-public class UserRequestDto { // Wieso 2 DTO's?
+public class UserRequestDto {
 
     private String name;
     private String email;

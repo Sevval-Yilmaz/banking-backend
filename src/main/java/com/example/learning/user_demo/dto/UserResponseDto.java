@@ -2,7 +2,7 @@ package com.example.learning.user_demo.dto;
 
 import java.math.BigDecimal;
 
-public class UserResponseDto { //wieso für api response?
+public class UserResponseDto {
 
     private Long id;
     private String name;

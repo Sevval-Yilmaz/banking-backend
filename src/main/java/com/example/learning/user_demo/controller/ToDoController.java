@@ -9,10 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/todos")
 public class ToDoController {
-    // Get = Erhalten
-    // Post = Hinzufügen
-    // Put = Verändern
-    // Delete = Löschen
 
     private final ToDoService toDoService;
 
