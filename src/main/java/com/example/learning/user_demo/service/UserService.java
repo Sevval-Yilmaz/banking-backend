@@ -68,4 +68,22 @@ public class UserService {
 
         userRepository.delete(user);
     }
+
+    public UserResponseDto updateUser(Long id, UserRequestDto userRequestDto) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found."));
+
+        user.setName(userRequestDto.getName());
+        user.setEmail(userRequestDto.getEmail());
+        user.setBalance(userRequestDto.getBalance());
+
+        User updateUser = userRepository.save(user);
+
+        UserResponseDto responseDto = new UserResponseDto();
+        responseDto.setId(updateUser.getId());
+        responseDto.setName(updateUser.getName());
+        responseDto.setEmail(updateUser.getEmail());
+        responseDto.setBalance(updateUser.getBalance());
+        return responseDto;
+    }
 }

@@ -2,7 +2,6 @@ package com.example.learning.user_demo.controller;
 
 import com.example.learning.user_demo.dto.UserRequestDto;
 import com.example.learning.user_demo.dto.UserResponseDto;
-import com.example.learning.user_demo.entity.User;
 import com.example.learning.user_demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/users") // RequestMapping?
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
@@ -37,5 +36,10 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         this.userService.deleteUser(id);
+    }
+
+    @PutMapping("/{id}")
+    public UserResponseDto updateUser(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto) {
+        return userService.updateUser(id, userRequestDto);
     }
 }
