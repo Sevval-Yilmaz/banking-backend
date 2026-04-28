@@ -4,9 +4,18 @@ import java.math.BigDecimal;
 
 public class AccountRequestDto {
 
+    private Long userId;
     private String iban;
     private BigDecimal balance;
     private String accountType;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getIban() {
         return iban;

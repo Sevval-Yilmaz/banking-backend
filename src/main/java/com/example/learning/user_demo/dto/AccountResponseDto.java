@@ -8,6 +8,8 @@ public class AccountResponseDto {
     private String iban;
     private BigDecimal balance;
     private String accountType;
+    private Long userId;
+    private String userName;
 
     public Long getId() {
         return id;
@@ -39,5 +41,21 @@ public class AccountResponseDto {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

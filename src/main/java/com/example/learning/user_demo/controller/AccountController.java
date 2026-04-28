@@ -3,10 +3,9 @@ package com.example.learning.user_demo.controller;
 import com.example.learning.user_demo.dto.AccountRequestDto;
 import com.example.learning.user_demo.dto.AccountResponseDto;
 import com.example.learning.user_demo.service.AccountService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -16,6 +15,11 @@ public class AccountController {
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
+    }
+
+    @GetMapping
+    public List<AccountResponseDto> getAllAccounts() {
+        return accountService.getAllAccounts();
     }
 
     @PostMapping

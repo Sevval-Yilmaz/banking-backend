@@ -1,8 +1,7 @@
 package com.example.learning.user_demo.entity;
 
 import jakarta.persistence.*;
-
-import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "app_user")
@@ -14,7 +13,9 @@ public class User {
 
     private String name;
     private String email;
-    private BigDecimal balance;
+
+    @OneToMany(mappedBy = "user")
+    private List<Account> accounts;
 
     public Long getId() {
         return id;
@@ -40,11 +41,11 @@ public class User {
         this.email = email;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    /*public List<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }*/
 }

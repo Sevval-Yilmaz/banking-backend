@@ -25,7 +25,6 @@ public class UserService {
                     dto.setId(user.getId());
                     dto.setName(user.getName());
                     dto.setEmail(user.getEmail());
-                    dto.setBalance(user.getBalance());
                     return dto;
                 })
                 .toList();
@@ -41,7 +40,6 @@ public class UserService {
         dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
-        dto.setBalance(user.getBalance());
         return dto;
     }
 
@@ -50,7 +48,6 @@ public class UserService {
         User user = new User();
         user.setName(requestDto.getName());
         user.setEmail(requestDto.getEmail());
-        user.setBalance(requestDto.getBalance());
 
         User saveUser = userRepository.save(user);
 
@@ -58,7 +55,6 @@ public class UserService {
         responseDto.setId(saveUser.getId());
         responseDto.setName(saveUser.getName());
         responseDto.setEmail(saveUser.getEmail());
-        responseDto.setBalance(saveUser.getBalance());
 
         return responseDto;
     }
@@ -75,7 +71,6 @@ public class UserService {
 
         user.setName(userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail());
-        user.setBalance(userRequestDto.getBalance());
 
         User updateUser = userRepository.save(user);
 
@@ -83,7 +78,6 @@ public class UserService {
         responseDto.setId(updateUser.getId());
         responseDto.setName(updateUser.getName());
         responseDto.setEmail(updateUser.getEmail());
-        responseDto.setBalance(updateUser.getBalance());
         return responseDto;
     }
 }

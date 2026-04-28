@@ -15,6 +15,10 @@ public class Account {
     private BigDecimal balance;
     private String accountType;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Account() {}
 
     public Long getId() {
@@ -47,5 +51,13 @@ public class Account {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -7,7 +7,6 @@ public class UserResponseDto {
     private Long id;
     private String name;
     private String email;
-    private BigDecimal balance;
 
     public Long getId() {
         return id;
@@ -31,13 +30,5 @@ public class UserResponseDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
     }
 }
