@@ -15,6 +15,7 @@ RESTful backend application for managing users and bank accounts, built to pract
 ## 🛠️ Tech Stack
 
 * Kotlin
+* Java 21
 * Spring Boot
 * Spring Web
 * Spring Data JPA (Hibernate as ORM provider)
