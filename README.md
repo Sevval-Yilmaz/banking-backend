@@ -17,8 +17,7 @@ RESTful backend application for managing users and bank accounts, built to pract
 * Kotlin
 * Spring Boot
 * Spring Web
-* Spring Data JPA
-* Hibernate
+* Spring Data JPA (Hibernate as ORM provider)
 * H2 Database
 * Gradle (Kotlin DSL)
 
