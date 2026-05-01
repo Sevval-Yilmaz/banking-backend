@@ -1,7 +1,5 @@
 package com.example.learning.user_demo.dto;
 
-import java.math.BigDecimal;
-
 public class UserResponseDto {
 
     private Long id;

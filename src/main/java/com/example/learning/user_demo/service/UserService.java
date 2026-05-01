@@ -3,6 +3,7 @@ package com.example.learning.user_demo.service;
 import com.example.learning.user_demo.dto.UserRequestDto;
 import com.example.learning.user_demo.dto.UserResponseDto;
 import com.example.learning.user_demo.entity.User;
+import com.example.learning.user_demo.mapper.UserMapper;
 import com.example.learning.user_demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,51 +13,38 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository) { // Construtor Injection? Wieso braucht man das?
+    public UserService(
+            UserRepository userRepository,
+            UserMapper userMapper
+    ) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     public List<UserResponseDto> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(user -> {
-                    UserResponseDto dto = new UserResponseDto();
-                    dto.setId(user.getId());
-                    dto.setName(user.getName());
-                    dto.setEmail(user.getEmail());
-                    return dto;
-                })
+                .map(userMapper::toDto)
                 .toList();
     }
 
     public UserResponseDto getUserById(Long id) {
 
-        // findet id in der DB oder nicht
+        // find user in DB or else throw exception
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 
-        // user infos werden für den controller ready gemacht, damit das im FE landet
-        UserResponseDto dto = new UserResponseDto();
-        dto.setId(user.getId());
-        dto.setName(user.getName());
-        dto.setEmail(user.getEmail());
-        return dto;
+        return userMapper.toDto(user);
     }
 
     public UserResponseDto createUser(UserRequestDto requestDto) {
 
-        User user = new User();
-        user.setName(requestDto.getName());
-        user.setEmail(requestDto.getEmail());
+        User user = userMapper.toEntity(requestDto);
 
         User saveUser = userRepository.save(user);
 
-        UserResponseDto responseDto = new UserResponseDto();
-        responseDto.setId(saveUser.getId());
-        responseDto.setName(saveUser.getName());
-        responseDto.setEmail(saveUser.getEmail());
-
-        return responseDto;
+        return userMapper.toDto(saveUser);
     }
 
     public void deleteUser(Long id) {
@@ -74,10 +62,6 @@ public class UserService {
 
         User updateUser = userRepository.save(user);
 
-        UserResponseDto responseDto = new UserResponseDto();
-        responseDto.setId(updateUser.getId());
-        responseDto.setName(updateUser.getName());
-        responseDto.setEmail(updateUser.getEmail());
-        return responseDto;
+        return userMapper.toDto(updateUser);
     }
 }

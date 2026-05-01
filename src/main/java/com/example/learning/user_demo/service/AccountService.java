@@ -4,6 +4,7 @@ import com.example.learning.user_demo.dto.AccountRequestDto;
 import com.example.learning.user_demo.dto.AccountResponseDto;
 import com.example.learning.user_demo.entity.Account;
 import com.example.learning.user_demo.entity.User;
+import com.example.learning.user_demo.mapper.AccountMapper;
 import com.example.learning.user_demo.repository.AccountRepository;
 import com.example.learning.user_demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,29 +16,23 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
+    private final AccountMapper accountMapper;
 
     // Constructor Injection
     public AccountService(
             AccountRepository accountRepository,
-            UserRepository userRepository
+            UserRepository userRepository,
+            AccountMapper accountMapper
     ) {
         this.accountRepository = accountRepository;
         this.userRepository = userRepository;
+        this.accountMapper = accountMapper;
     }
 
     public List<AccountResponseDto> getAllAccounts() {
         return accountRepository.findAll()
                 .stream()
-                .map(account -> {
-                    AccountResponseDto dto = new AccountResponseDto();
-                    dto.setId(account.getId());
-                    dto.setIban(account.getIban());
-                    dto.setAccountType(account.getAccountType());
-
-                    dto.setUserId(account.getUser().getId());
-                    dto.setUserName(account.getUser().getName());
-                    return dto;
-                })
+                .map(accountMapper::toDto) // Longform: account -> accountMapper.toDto(account)
                 .toList();
     }
 
@@ -46,26 +41,12 @@ public class AccountService {
         User user = userRepository.findById(accountRequestDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Account account = new Account();
-        // für die Datenbank (Entity)
-        account.setIban(accountRequestDto.getIban());
-        account.setBalance(accountRequestDto.getBalance());
-        account.setAccountType(accountRequestDto.getAccountType());
+        // RequestDto -> Entity (DB)
+        Account account = accountMapper.toEntity(accountRequestDto);
         account.setUser(user); // Verknüpfung des Accounts zum User
 
-        // in Datenbank speichern
-        Account saveAccount = accountRepository.save(account);
+        Account saveAccount = accountRepository.save(account); // save in DB
 
-        // API Response
-        AccountResponseDto responseDto = new AccountResponseDto();
-        responseDto.setId(saveAccount.getId());
-        responseDto.setIban(saveAccount.getIban());
-        responseDto.setBalance(saveAccount.getBalance());
-        responseDto.setAccountType(saveAccount.getAccountType());
-
-        responseDto.setUserId(user.getId());
-        responseDto.setUserName(user.getName());
-
-        return responseDto;
+        return accountMapper.toDto(saveAccount); // MapStruct makes Entity -> ResponseDto, no manual code needed
     }
 }
