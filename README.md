@@ -1,29 +1,35 @@
-# Banking Backend API
+# Banking Backend
 
 ## 📌 Description
+RESTful backend application for managing users and bank accounts, built to practice clean backend architecture, core Spring Boot concepts, and containerized deployment with Docker.
 
-RESTful backend application for managing users and bank accounts, built to practice clean backend architecture and core Spring Boot concepts.
+---
 
 ## 🚀 Features
 
 * User and account management (User & Account API)
 * Linking users and accounts
+* Transaction support 
 * RESTful API design
-* H2 in-memory database
-* API testing with Postman
+* PostgreSQL database
+* Containerized with Docker & Docker Compose 
+* API documentation with Swagger UI
+
+---
 
 ## 🛠️ Tech Stack
 
-* Kotlin
 * Java 21
 * Spring Boot
 * Spring Web
 * Spring Data JPA (Hibernate as ORM provider)
-* H2 Database
+* PostgreSQL
+* Docker & Docker Compose
 * Gradle (Kotlin DSL)
 
-## 🏗️ Architecture
+---
 
+## 🏗️ Architecture
 Layered architecture:
 
 * Controller: HTTP layer
@@ -32,41 +38,86 @@ Layered architecture:
 
 ## 🔗 API Examples
 
-* GET /users/{id}
-* POST /users
-* GET /accounts/{id}
-* POST /accounts
+- `GET /api/users/{id}`
+- `POST /api/users`
+- `GET /api/accounts/{id}`
+- `POST /api/accounts`
+
+---
 
 ## ▶️ Run
+
+### Option A: Local (IntelliJ)
+
+Make sure the PostgreSQL container is running first:
+
+```bash
+docker start banking-db
+```
+
+Then start the app:
 
 ```bash
 ./gradlew bootRun
 ```
 
-App runs at:
+### Option B: Docker Compose (recommended)
 
+Starts both the app and the database together:
+
+```bash
+docker compose up --build
+```
+
+App runs at:
 ```
 http://localhost:8080
 ```
 
-## 🧪 Testing
+---
 
-API tested with Postman.
+## 📖 Swagger UI
+
+Interactive API documentation available at:
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+---
 
 ## 🗄️ Database
 
-H2 in-memory database
-Console: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+PostgreSQL running in Docker.
+
+To inspect the database, connect via pgAdmin 4:
+
+| Field    | Value       |
+|----------|-------------|
+| Host     | localhost   |
+| Port     | 5432        |
+| Database | banking     |
+| Username | postgres    |
+
+> ⚠️ Credentials are managed via `.env` file. See `.env.example` for required variables.
+
+---
+
+## 🧪 Testing
+
+API tested with Postman and Swagger UI.
+
+---
 
 ## 📈 Status
 
 Active development
 
+---
+
 ## ⚙️ Planned Features
 
-* Transfers between accounts
-* JWT authentication & authorization
-* PostgreSQL integration
+- JWT authentication & authorization
+- Kubernetes deployment
 
 ---
 
