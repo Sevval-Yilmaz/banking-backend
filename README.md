@@ -3,8 +3,6 @@
 ## 📌 Description
 RESTful backend application for managing users and bank accounts, built to practice clean backend architecture, core Spring Boot concepts, and containerized deployment with Docker.
 
----
-
 ## 🚀 Features
 
 * User and account management (User & Account API)
@@ -15,8 +13,6 @@ RESTful backend application for managing users and bank accounts, built to pract
 * Containerized with Docker & Docker Compose 
 * API documentation with Swagger UI
 
----
-
 ## 🛠️ Tech Stack
 
 * Java 21
@@ -26,8 +22,6 @@ RESTful backend application for managing users and bank accounts, built to pract
 * PostgreSQL
 * Docker & Docker Compose
 * Gradle (Kotlin DSL)
-
----
 
 ## 🏗️ Architecture
 Layered architecture:
@@ -42,8 +36,6 @@ Layered architecture:
 - `POST /api/users`
 - `GET /api/accounts/{id}`
 - `POST /api/accounts`
-
----
 
 ## ▶️ Run
 
@@ -61,7 +53,7 @@ Then start the app:
 ./gradlew bootRun
 ```
 
-### Option B: Docker Compose (recommended)
+### Option B: Docker Compose
 
 Starts both the app and the database together:
 
@@ -74,16 +66,12 @@ App runs at:
 http://localhost:8080
 ```
 
----
-
 ## 📖 Swagger UI
 
 Interactive API documentation available at:
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
-
----
 
 ## 🗄️ Database
 
@@ -100,26 +88,18 @@ To inspect the database, connect via pgAdmin 4:
 
 > ⚠️ Credentials are managed via `.env` file. See `.env.example` for required variables.
 
----
-
 ## 🧪 Testing
 
 API tested with Postman and Swagger UI.
-
----
 
 ## 📈 Status
 
 Active development
 
----
-
 ## ⚙️ Planned Features
 
 - JWT authentication & authorization
 - Kubernetes deployment
-
----
 
 ## 👩🏻‍💻 Author
 
