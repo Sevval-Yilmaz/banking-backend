@@ -31,16 +31,16 @@ public class UserService {
     }
 
     public UserResponseDto getUserById(Long id) {
-
-        // find user in DB or else throw exception
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 
         return userMapper.toDto(user);
     }
 
     public UserResponseDto createUser(UserRequestDto requestDto) {
-
-        User user = userMapper.toEntity(requestDto);
+        User user = new User(
+                requestDto.getName(),
+                requestDto.getEmail()
+        );
 
         User saveUser = userRepository.save(user);
 
@@ -54,11 +54,10 @@ public class UserService {
     }
 
     public UserResponseDto updateUser(Long id, UserRequestDto userRequestDto) {
-
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found."));
 
-        user.setName(userRequestDto.getName());
-        user.setEmail(userRequestDto.getEmail());
+        user.changeName(userRequestDto.getName());
+        user.changeEmail(userRequestDto.getEmail());
 
         User updateUser = userRepository.save(user);
 
