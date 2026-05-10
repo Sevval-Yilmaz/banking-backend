@@ -12,8 +12,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String iban;
-    private BigDecimal balance;
-    private String accountType;
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -45,11 +47,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 
