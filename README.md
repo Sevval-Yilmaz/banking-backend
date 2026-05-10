@@ -1,19 +1,28 @@
 # Banking Backend
 
-## 📌 Description
-RESTful backend application for managing users and bank accounts, built to practice clean backend architecture, core Spring Boot concepts, and containerized deployment with Docker.
+## Description
+RESTful backend application for managing users, bank accounts and transactions.
 
-## 🚀 Features
+The project is built to practice:
 
-* User and account management (User & Account API)
-* Linking users and accounts
-* Transaction support 
+* Clean Architecture principles (Domain / Application / Infrastructure separation)
+* OOP design (encapsulation, aggregation, factory methods)
+* Spring Boot backend development 
+* PostgreSQL persistence with JPA/Hibernate 
+* Containerized deployment using Docker
+
+## Features
+
+* User management (CRUD) 
+* Bank account management
+* Account creation linked to users (aggregation)
+* Transaction (deposit / withdraw) 
 * RESTful API design
 * PostgreSQL database
-* Containerized with Docker & Docker Compose 
-* API documentation with Swagger UI
+* Docker & Docker Compose 
+* Swagger API documentation
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * Java 21
 * Spring Boot
@@ -22,32 +31,40 @@ RESTful backend application for managing users and bank accounts, built to pract
 * PostgreSQL
 * Docker & Docker Compose
 * Gradle (Kotlin DSL)
+* MapStruct (DTO mapping)
 
-## 🏗️ Architecture
-Layered architecture:
+## Architecture
+This project is evolving towards a Clean Architecture:
 
-* Controller: HTTP layer
-* Service: Business logic
-* Repository: Data access
+* Controller: HTTP requests and responses
+* Service / Use Case: Application workflows
+* Domain: Business logic and rules
+* Repository/Infrastructure: Handles data access and persistence
 
-## 🔗 API Examples
+## API Examples
 
+Users:
 - `GET /api/users/{id}`
 - `POST /api/users`
-- `GET /api/accounts/{id}`
+
+Accounts:
+- `GET /api/accounts`
 - `POST /api/accounts`
 
-## ▶️ Run
+Transactions:
+- `POST /api/transactions`
+
+## Run
 
 ### Option A: Local (IntelliJ)
 
-Make sure the PostgreSQL container is running first:
+Start PostgreSQL container first:
 
 ```bash
 docker start banking-db
 ```
 
-Then start the app:
+Run application:
 
 ```bash
 ./gradlew bootRun
@@ -55,29 +72,30 @@ Then start the app:
 
 ### Option B: Docker Compose
 
-Starts both the app and the database together:
+Runs backend + database together:
 
 ```bash
 docker compose up --build
 ```
 
-App runs at:
+Application runs at:
+
 ```
 http://localhost:8080
 ```
 
-## 📖 Swagger UI
+## Swagger UI
 
 Interactive API documentation available at:
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-## 🗄️ Database
+## Database
 
-PostgreSQL running in Docker.
+PostgreSQL running inside Docker.
 
-To inspect the database, connect via pgAdmin 4:
+Connect via pgAdmin:
 
 | Field    | Value       |
 |----------|-------------|
@@ -86,22 +104,31 @@ To inspect the database, connect via pgAdmin 4:
 | Database | banking     |
 | Username | postgres    |
 
-> ⚠️ Credentials are managed via `.env` file. See `.env.example` for required variables.
+> ⚠️ Credentials are managed via `.env` file. See `.env.example`.
 
-## 🧪 Testing
+## Testing
 
 API tested with Postman and Swagger UI.
 
-## 📈 Status
+## Status
 
 Active development
 
-## ⚙️ Planned Features
+## Learning Goals
+
+This project focuses on:
+
+* Domain-driven design basics 
+* Clean Architecture patterns 
+* Banking-style backend modeling 
+* Real-world Spring Boot structure
+
+## Planned Features
 
 - JWT authentication & authorization
 - Kubernetes deployment
 
-## 👩🏻‍💻 Author
+## Author
 
 Sevval Yilmaz
 
