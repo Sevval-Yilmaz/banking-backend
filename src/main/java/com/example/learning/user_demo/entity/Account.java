@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "bank_account")
-public class Account {
+public class Account extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(nullable = false, unique = true, updatable = false)
     private String iban;
-    private BigDecimal balance = BigDecimal.ZERO;
+
+    @Column(nullable = false)
+    private BigDecimal balance;
 
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
@@ -23,43 +23,49 @@ public class Account {
 
     public Account() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getIban() {
-        return iban;
-    }
-
-    public void setIban(String iban) {
+    public Account(String iban, AccountType accountType) {
         this.iban = iban;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
+        this.balance = BigDecimal.ZERO;
         this.accountType = accountType;
     }
 
-    public User getUser() {
-        return user;
+    public static Account open(String iban, AccountType type) {
+        return new Account(iban, type);
     }
 
-    public void setUser(User user) {
+    public void deposit(BigDecimal amount) {
+        validateAmount(amount);
+        this.balance = this.balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) {
+        validateAmount(amount);
+
+        if (this.balance.compareTo(amount) < 0) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+
+        this.balance = this.balance.subtract(amount);
+    }
+
+    private void validateAmount(BigDecimal amount) {
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Amount must be positive!");
+        }
+    }
+
+    void setUser(User user) {
         this.user = user;
+    }
+
+    // Getters
+    public String getIban() {
+        return iban;
+    }
+    public BigDecimal getBalance() {
+        return balance;
+    }
+    public AccountType getAccountType() {
+        return accountType;
     }
 }
