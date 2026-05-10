@@ -5,34 +5,24 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class Transaction {
+public class Transaction extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column(nullable = false)
     private BigDecimal amount;
 
-    private Long fromAccountId;
-    private Long toAccountId;
+    @ManyToOne
+    @JoinColumn(name = "from_account_id")
+    private Account fromAccount;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "to_account_id")
+    private Account toAccount;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Transaction() {}
 
-    public void setAmount(BigDecimal amount) {
+    public Transaction(BigDecimal amount, Account fromAccount, Account toAccount) {
         this.amount = amount;
-    }
-
-    public void setFromAccountId(Long fromAccountId) {
-        this.fromAccountId = fromAccountId;
-    }
-
-    public void setToAccountId(Long toAccountId) {
-        this.toAccountId = toAccountId;
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
     }
 }

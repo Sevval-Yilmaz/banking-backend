@@ -8,8 +8,6 @@ import com.example.learning.user_demo.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-
 @Service
 public class TransactionService {
 
@@ -27,10 +25,6 @@ public class TransactionService {
     @Transactional
     public void transfer(TransactionRequestDto dto) {
 
-        if (dto.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Amount must be positive!");
-        }
-
         if (dto.getFromAccountId().equals(dto.getToAccountId())) {
             throw new RuntimeException("Cannot transfer to same account!");
         }
@@ -41,20 +35,17 @@ public class TransactionService {
         Account toUser = accountRepository.findById(dto.getToAccountId())
                 .orElseThrow(() -> new RuntimeException("To User not found!"));
 
-        if (fromUser.getBalance().compareTo(dto.getAmount()) < 0) {
-            throw new RuntimeException("Not enough money!");
-        }
-
-        fromUser.setBalance(fromUser.getBalance().subtract(dto.getAmount()));
-        toUser.setBalance(toUser.getBalance().add(dto.getAmount()));
+        fromUser.withdraw(dto.getAmount());
+        toUser.deposit(dto.getAmount());
 
         accountRepository.save(fromUser);
         accountRepository.save(toUser);
 
-        Transaction transaction = new Transaction();
-        transaction.setAmount(dto.getAmount());
-        transaction.setFromAccountId(dto.getFromAccountId());
-        transaction.setToAccountId(dto.getToAccountId());
+        Transaction transaction = new Transaction(
+                dto.getAmount(),
+                fromUser,
+                toUser
+        );
 
         transactionRepository.save(transaction);
     }
