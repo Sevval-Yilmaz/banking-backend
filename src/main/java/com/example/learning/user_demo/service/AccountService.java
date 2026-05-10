@@ -36,17 +36,28 @@ public class AccountService {
                 .toList();
     }
 
-    public AccountResponseDto createAccount(AccountRequestDto accountRequestDto) {
+    public AccountResponseDto createAccount(AccountRequestDto requestDto) {
 
-        User user = userRepository.findById(accountRequestDto.getUserId())
+        User user = userRepository.findById(requestDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // RequestDto -> Entity (DB)
-        Account account = accountMapper.toEntity(accountRequestDto);
-        account.setUser(user); // Verknüpfung des Accounts zum User
+        Account account = Account.open(
+                requestDto.getIban(),
+                requestDto.getAccountType()
+        );
+        user.addAccount(account); // sync account and user
 
-        Account saveAccount = accountRepository.save(account); // save in DB
+        Account saved = accountRepository.save(account); // save in DB
 
-        return accountMapper.toDto(saveAccount); // MapStruct makes Entity -> ResponseDto, no manual code needed
+        AccountResponseDto dto = new AccountResponseDto();
+        dto.setId(saved.getId());
+        dto.setIban(saved.getIban());
+        dto.setBalance(saved.getBalance());
+        dto.setAccountType(saved.getAccountType().name());
+
+        dto.setUserId(user.getId());
+        dto.setUserName(user.getName());
+
+        return dto;
     }
 }
