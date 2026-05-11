@@ -1,6 +1,6 @@
 package com.example.learning.user_demo.account;
 
-import com.example.learning.user_demo.entity.User;
+import com.example.learning.user_demo.user.User;
 import com.example.learning.user_demo.shared.BaseEntity;
 import jakarta.persistence.*;
 

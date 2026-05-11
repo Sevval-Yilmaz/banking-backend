@@ -1,5 +1,7 @@
-package com.example.learning.user_demo.entity;
+package com.example.learning.user_demo.transaction;
 
+import com.example.learning.user_demo.account.Account;
+import com.example.learning.user_demo.shared.BaseEntity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

@@ -1,10 +1,8 @@
-package com.example.learning.user_demo.service;
+package com.example.learning.user_demo.transaction;
 
-import com.example.learning.user_demo.dto.TransactionRequestDto;
-import com.example.learning.user_demo.entity.Account;
-import com.example.learning.user_demo.entity.Transaction;
-import com.example.learning.user_demo.repository.AccountRepository;
-import com.example.learning.user_demo.repository.TransactionRepository;
+import com.example.learning.user_demo.transaction.dto.TransactionRequestDto;
+import com.example.learning.user_demo.account.Account;
+import com.example.learning.user_demo.account.AccountRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

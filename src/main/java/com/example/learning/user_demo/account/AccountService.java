@@ -2,8 +2,8 @@ package com.example.learning.user_demo.account;
 
 import com.example.learning.user_demo.account.dto.AccountRequestDto;
 import com.example.learning.user_demo.account.dto.AccountResponseDto;
-import com.example.learning.user_demo.entity.User;
-import com.example.learning.user_demo.repository.UserRepository;
+import com.example.learning.user_demo.user.User;
+import com.example.learning.user_demo.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

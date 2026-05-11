@@ -1,8 +1,7 @@
-package com.example.learning.user_demo.controller;
+package com.example.learning.user_demo.transaction;
 
-import com.example.learning.user_demo.dto.TransactionRequestDto;
-import com.example.learning.user_demo.dto.TransactionResponseDto;
-import com.example.learning.user_demo.service.TransactionService;
+import com.example.learning.user_demo.transaction.dto.TransactionRequestDto;
+import com.example.learning.user_demo.transaction.dto.TransactionResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
