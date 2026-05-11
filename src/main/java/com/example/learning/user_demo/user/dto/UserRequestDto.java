@@ -1,18 +1,9 @@
-package com.example.learning.user_demo.dto;
+package com.example.learning.user_demo.user.dto;
 
-public class UserResponseDto {
+public class UserRequestDto {
 
-    private Long id;
     private String name;
     private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

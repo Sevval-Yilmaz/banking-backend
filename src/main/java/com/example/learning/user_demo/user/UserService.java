@@ -1,10 +1,7 @@
-package com.example.learning.user_demo.service;
+package com.example.learning.user_demo.user;
 
-import com.example.learning.user_demo.dto.UserRequestDto;
-import com.example.learning.user_demo.dto.UserResponseDto;
-import com.example.learning.user_demo.entity.User;
-import com.example.learning.user_demo.mapper.UserMapper;
-import com.example.learning.user_demo.repository.UserRepository;
+import com.example.learning.user_demo.user.dto.UserRequestDto;
+import com.example.learning.user_demo.user.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

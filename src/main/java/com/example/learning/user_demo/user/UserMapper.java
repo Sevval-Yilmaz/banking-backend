@@ -1,7 +1,6 @@
-package com.example.learning.user_demo.mapper;
+package com.example.learning.user_demo.user;
 
-import com.example.learning.user_demo.dto.UserResponseDto;
-import com.example.learning.user_demo.entity.User;
+import com.example.learning.user_demo.user.dto.UserResponseDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
