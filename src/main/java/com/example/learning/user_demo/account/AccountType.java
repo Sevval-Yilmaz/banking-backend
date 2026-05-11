@@ -1,4 +1,4 @@
-package com.example.learning.user_demo.entity;
+package com.example.learning.user_demo.account;
 
 public enum AccountType {
     CHECKING,

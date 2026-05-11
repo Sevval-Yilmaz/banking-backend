@@ -1,8 +1,7 @@
-package com.example.learning.user_demo.controller;
+package com.example.learning.user_demo.account;
 
-import com.example.learning.user_demo.dto.AccountRequestDto;
-import com.example.learning.user_demo.dto.AccountResponseDto;
-import com.example.learning.user_demo.service.AccountService;
+import com.example.learning.user_demo.account.dto.AccountRequestDto;
+import com.example.learning.user_demo.account.dto.AccountResponseDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

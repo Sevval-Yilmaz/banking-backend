@@ -1,11 +1,8 @@
-package com.example.learning.user_demo.service;
+package com.example.learning.user_demo.account;
 
-import com.example.learning.user_demo.dto.AccountRequestDto;
-import com.example.learning.user_demo.dto.AccountResponseDto;
-import com.example.learning.user_demo.entity.Account;
+import com.example.learning.user_demo.account.dto.AccountRequestDto;
+import com.example.learning.user_demo.account.dto.AccountResponseDto;
 import com.example.learning.user_demo.entity.User;
-import com.example.learning.user_demo.mapper.AccountMapper;
-import com.example.learning.user_demo.repository.AccountRepository;
 import com.example.learning.user_demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

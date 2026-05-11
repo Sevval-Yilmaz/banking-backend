@@ -1,4 +1,4 @@
-package com.example.learning.user_demo.dto;
+package com.example.learning.user_demo.account.dto;
 
 import java.math.BigDecimal;
 

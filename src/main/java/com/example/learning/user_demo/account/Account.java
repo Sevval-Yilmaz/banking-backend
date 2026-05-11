@@ -1,5 +1,7 @@
-package com.example.learning.user_demo.entity;
+package com.example.learning.user_demo.account;
 
+import com.example.learning.user_demo.entity.User;
+import com.example.learning.user_demo.shared.BaseEntity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -21,9 +23,9 @@ public class Account extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Account() {}
+    protected Account() {}
 
-    public Account(String iban, AccountType accountType) {
+    private Account(String iban, AccountType accountType) {
         this.iban = iban;
         this.balance = BigDecimal.ZERO;
         this.accountType = accountType;
@@ -54,7 +56,7 @@ public class Account extends BaseEntity {
         }
     }
 
-    void setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -67,5 +69,8 @@ public class Account extends BaseEntity {
     }
     public AccountType getAccountType() {
         return accountType;
+    }
+    public User getUser() {
+        return user;
     }
 }

@@ -1,6 +1,6 @@
-package com.example.learning.user_demo.dto;
+package com.example.learning.user_demo.account.dto;
 
-import com.example.learning.user_demo.entity.AccountType;
+import com.example.learning.user_demo.account.AccountType;
 
 import java.math.BigDecimal;
 
