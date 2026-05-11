@@ -1,6 +1,7 @@
 package com.example.learning.user_demo.user;
 
 import com.example.learning.user_demo.account.Account;
+import com.example.learning.user_demo.account.AccountType;
 import com.example.learning.user_demo.shared.BaseEntity;
 import jakarta.persistence.*;
 
@@ -37,9 +38,10 @@ public class User extends BaseEntity {
         return Collections.unmodifiableList(accounts);
     }
 
-    public void addAccount(Account account) {
+    public Account openAccount(String iban, AccountType type) {
+        Account account = Account.open(iban, type, this);
         accounts.add(account);
-        account.setUser(this);
+        return account;
     }
 
     public void changeName(String name) {

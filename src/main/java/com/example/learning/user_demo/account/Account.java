@@ -25,14 +25,15 @@ public class Account extends BaseEntity {
 
     protected Account() {}
 
-    private Account(String iban, AccountType accountType) {
+    private Account(String iban, AccountType type, User user) {
         this.iban = iban;
         this.balance = BigDecimal.ZERO;
-        this.accountType = accountType;
+        this.accountType = type;
+        this.user = user;
     }
 
-    public static Account open(String iban, AccountType type) {
-        return new Account(iban, type);
+    public static Account open(String iban, AccountType type, User user) {
+        return new Account(iban, type, user);
     }
 
     public void deposit(BigDecimal amount) {
@@ -54,10 +55,6 @@ public class Account extends BaseEntity {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Amount must be positive!");
         }
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     // Getters

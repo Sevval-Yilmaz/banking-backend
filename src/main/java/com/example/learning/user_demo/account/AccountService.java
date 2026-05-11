@@ -38,11 +38,11 @@ public class AccountService {
         User user = userRepository.findById(requestDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Account account = Account.open(
+        // sync account and user
+        Account account = user.openAccount(
                 requestDto.getIban(),
                 requestDto.getAccountType()
         );
-        user.addAccount(account); // sync account and user
 
         Account saved = accountRepository.save(account); // save in DB
 
