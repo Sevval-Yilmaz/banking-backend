@@ -1,28 +1,28 @@
-# Banking Backend
+# 🏦 Banking Backend
 
-## Description
+## 📌 Description
 RESTful backend application for managing users, bank accounts and transactions.
 
 The project is built to practice:
 
-* Clean Architecture principles (Domain / Application / Infrastructure separation)
-* OOP design (encapsulation, aggregation, factory methods)
+* Clean Architecture principles with feature-based modular structure (user, account, transaction)
+* Object-Oriented Design
 * Spring Boot backend development 
 * PostgreSQL persistence with JPA/Hibernate 
 * Containerized deployment using Docker
 
-## Features
+## 🚀 Features
 
 * User management (CRUD) 
 * Bank account management
-* Account creation linked to users (aggregation)
+* Account creation linked to users
 * Transaction (deposit / withdraw) 
 * RESTful API design
 * PostgreSQL database
 * Docker & Docker Compose 
 * Swagger API documentation
 
-## Tech Stack
+## 🛠 Tech Stack
 
 * Java 21
 * Spring Boot
@@ -33,15 +33,16 @@ The project is built to practice:
 * Gradle (Kotlin DSL)
 * MapStruct (DTO mapping)
 
-## Architecture
-This project is evolving towards a Clean Architecture:
+## 🏗️ Architecture
 
-* Controller: HTTP requests and responses
-* Service / Use Case: Application workflows
-* Domain: Business logic and rules
-* Repository/Infrastructure: Handles data access and persistence
+> 📌 This project follows Clean Architecture principles with Domain-Driven Design (DDD) inspired modeling.
 
-## API Examples
+* **Controller Layer**: HTTP requests and responses
+* **Application / Service Layer**: Business use cases and application workflows
+* **Domain Layer**: Business logic, entities and rules
+* **Infrastructure Layer**: Handles data access and persistence (JPA / PostgreSQL)
+
+## 📡 API Examples
 
 Users:
 - `GET /api/users/{id}`
@@ -54,7 +55,7 @@ Accounts:
 Transactions:
 - `POST /api/transactions`
 
-## Run
+## ▶️ Run
 
 ### Option A: Local (IntelliJ)
 
@@ -84,14 +85,14 @@ Application runs at:
 http://localhost:8080
 ```
 
-## Swagger UI
+## 📖 Swagger UI
 
 Interactive API documentation available at:
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-## Database
+## 🗄 Database
 
 PostgreSQL running inside Docker.
 
@@ -106,29 +107,30 @@ Connect via pgAdmin:
 
 > ⚠️ Credentials are managed via `.env` file. See `.env.example`.
 
-## Testing
+## 🔧 Testing
 
 API tested with Postman and Swagger UI.
 
-## Status
+## 📈 Status
 
 Active development
 
-## Learning Goals
+## 🎯 Learning Goals
 
 This project focuses on:
 
-* Domain-driven design basics 
-* Clean Architecture patterns 
-* Banking-style backend modeling 
-* Real-world Spring Boot structure
+* Object-Oriented Programming (OOP) with strong domain modeling
+* Pragmatic Domain-Driven Design (DDD-inspired design)
+* Spring Boot backend development and REST API design
+* Banking-style business logic modeling
+* Practical, real-world project structure with feature-based organization
 
-## Planned Features
+## 🚀 Planned Features
 
 - JWT authentication & authorization
 - Kubernetes deployment
 
-## Author
+## 👩🏻‍💻 Author
 
 Sevval Yilmaz
 
